@@ -12,19 +12,7 @@ use Illuminate\Support\Facades\Storage;
 Route::view('/', 'welcome')->name('home');
 
 Route::view('/sobre-mi', 'sobre-mi')->name('sobre-mi');
-
-Route::prefix('servicios')->name('servicios.')->group(function () {
-    // Página general de servicios (si la usas)
-    Route::view('/', 'servicios.index')->name('index');
-
-    // Detalles de servicios
-    Route::view('/acompanamiento-psicologico', 'servicios.acompanamiento-psicologico')->name('acompanamiento');
-    Route::view('/bioneuroemocion', 'servicios.bioneuroemocion')->name('bioneuroemocion');
-
-    // Packs
-    Route::view('/pack-acompanamiento-psicologico', 'servicios.pack-acompanamiento-psicologico')->name('pack-acompanamiento');
-    Route::view('/pack-bioneuroemocion', 'servicios.pack-bioneuroemocion')->name('pack-bioneuroemocion');
-});
+Route::view('/servicios', 'servicios')->name('servicios');
 
 Route::get('/certificados/{file}', function (string $file) {
     // Seguridad básica
