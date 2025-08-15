@@ -70,7 +70,7 @@
 .hero__content h1{
   font-weight: 300;
   color: #111827;
-  font-size: clamp(26px, 4vw, 44px);
+  font-size: clamp(26px, 4vw, 74px);
   line-height: 1.1;
   margin: 0 0 8px;
 }

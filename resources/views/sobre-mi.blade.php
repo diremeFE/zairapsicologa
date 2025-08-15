@@ -32,7 +32,7 @@
   .hero-title{
     font-family: 'Sora', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;
     color: var(--text);
-    font-weight: 800;
+    font-weight: 400;
     line-height: 1.05;
     font-size: clamp(34px, 7vw, 86px);
     letter-spacing:-0.02em;

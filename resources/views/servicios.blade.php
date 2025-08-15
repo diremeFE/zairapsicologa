@@ -1,3 +1,131 @@
+<style>
+:root{
+  --brand:#F0337B;              /* rosa corporativo */
+  --ink:#2E2E2E;                /* texto principal */
+  --muted:#585858;              /* texto secundario */
+  --spark:#FFE6F1;              /* rosa pálido para estrellas */
+}
+
+/* ===== HERO SERVICIOS ===== */
+.svchero{
+  position: relative;
+  overflow: hidden;
+  background:#fff;
+  padding-top: clamp(32px,6vw,72px);
+  padding-bottom: clamp(24px,5vw,56px);
+}
+
+.svchero .wrap{
+  position: relative;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(16px,4vw,40px);
+  text-align: center;
+}
+
+/* --- Título --- */
+.svchero .title{
+  font-family: 'Sora', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+  line-height: 1.15;
+  color: var(--ink);
+  font-weight: 400;
+  font-size: clamp(28px,4.6vw,56px);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.svchero .title .brand{
+  color: var(--brand);
+  font-weight: 400;
+}
+.svchero .title .sub{
+  font-weight: 400;
+}
+
+/* --- Estrellas (puro CSS) --- */
+.spark{
+  position: absolute;
+  width: clamp(22px,3vw,36px);
+  aspect-ratio: 1/1;
+  opacity: .9;
+}
+.spark::before,
+.spark::after{
+  content:"";
+  position:absolute; inset:0;
+  background: var(--spark);
+  border-radius: 14%;
+  transform: rotate(45deg);
+}
+.spark::after{
+  transform: rotate(-45deg);
+}
+
+/* posiciones (ajustadas a la 2ª imagen) */
+.spark.left{
+  left: clamp(60px, 14vw, 190px);
+  top: clamp(24px, 6vw, 72px);
+}
+.spark.right{
+  right: clamp(60px, 14vw, 190px);
+  top: clamp(28px, 6vw, 78px);
+}
+
+/* --- Figura + semicírculo --- */
+.figure{
+  position: relative;
+  width: clamp(560px, 60vw, 980px);
+  height: clamp(360px, 42vw, 620px);
+  margin: clamp(18px,5vw,28px) auto 0 auto;
+}
+
+/* semicírculo con ligero degradado */
+.figure .arc{
+  position:absolute;
+  left:50%; transform:translateX(-50%);
+  bottom: 0;
+  width: 100%;
+  height: clamp(220px, 30vw, 360px);
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
+  background: radial-gradient(100% 120% at 50% 100%,
+              #FDB6D1 0%, #F47CB0 50%, #F05A9B 100%);
+  filter: saturate(110%);
+  z-index: 0;
+}
+
+/* personaje */
+.figure img{
+  position:absolute;
+  left:50%; transform:translateX(-50%);
+  bottom: 0;
+  width: clamp(320px, 36vw, 600px);
+  height:auto;
+  display:block;
+  z-index: 1;
+}
+
+/* ===== Responsivo fino ===== */
+@media (max-width: 900px){
+  .svchero .title{ font-size: clamp(26px,6vw,44px); }
+  .spark.left{ left: clamp(32px,10vw,120px); top: clamp(10px,6vw,48px); }
+  .spark.right{ right: clamp(32px,10vw,120px); top: clamp(14px,6vw,50px); }
+  .figure{ width: clamp(460px, 76vw, 680px); height: clamp(340px, 60vw, 520px); }
+  .figure .arc{ height: clamp(220px, 38vw, 340px); }
+  .figure img{ width: clamp(300px, 48vw, 520px); }
+}
+
+@media (max-width: 560px){
+  .svchero{ padding-top: clamp(20px,6vw,36px); }
+  .spark{ width: clamp(18px,5vw,26px); }
+  .spark.left{ left: clamp(18px,8vw,40px); top: clamp(12px,6vw,30px); }
+  .spark.right{ right: clamp(18px,8vw,40px); top: clamp(14px,6vw,32px); }
+  .figure{ width: clamp(320px, 86vw, 520px); height: clamp(300px, 70vw, 440px); }
+  .figure .arc{ height: clamp(200px, 46vw, 320px); }
+  .figure img{ width: clamp(260px, 56vw, 460px); }
+}
+
+</style>
+
 {{-- resources/views/sobre-mi.blade.php --}}
 @extends('layouts.app')
 
@@ -5,26 +133,26 @@
 
 @section('content')
 
-{{-- HERO: imagen full-bleed responsive sin recortes --}}
-<section class="relative isolate overflow-hidden">
-  {{-- Fondo --}}
-  <div class="absolute inset-0 -z-10">
-    <img
-      src="{{ asset('storage/images/hero images/hero-minimalista.png') }}"
-      alt="Zaira durante una sesión"
-      class="h-full w-full
-             object-contain         {{-- que se vea completa en móvil/tablet --}}
-             lg:object-cover        {{-- en escritorio ya puedes cubrir --}}
-             lg:object-[50%_30%]    {{-- foco aprox. (ajústalo si quieres) --}}
-      " />
-  </div>
+<section class="svchero">
+  <div class="wrap">
+    <h1 class="title font-medium">
+      Mis <span class="brand">servicios psicológicos</span><br>
+      <span class="sub">para acompañarte.</span>
+    </h1>
 
-  {{-- Altura del hero y espacio interno --}}
-  <div class="relative mx-auto max-w-7xl px-6 lg:px-8
-              min-h-[60vh] sm:min-h-[70vh] lg:min-h-[80vh]">
-    {{-- aquí iría tu texto si lo necesitas --}}
+    <!-- Estrellas -->
+    <span class="spark left" aria-hidden="true"></span>
+    <span class="spark right" aria-hidden="true"></span>
+
+    <!-- Figura + semicírculo -->
+    <div class="figure">
+      <div class="arc" aria-hidden="true"></div>
+      <img src="{{ asset('storage/images/hero images/minimalista.png') }}"
+           alt="Ilustración Zaira saludando">
+    </div>
   </div>
 </section>
+
 
   
 {{-- 1. ACOMPAÑAMIENTO PSICOLÓGICO --}}
@@ -149,7 +277,7 @@
     <div class="relative h-full rounded-2xl bg-[#FFF0EC] p-7 sm:p-8 flex flex-col">
         {{-- Imagen de comillas superpuesta (no ocupa altura) --}}
         <img
-        src="{{ asset('storage/images/ui/quotes.svg') }}"  {{-- o .png --}}
+        src="{{ asset('storage/images/quotes.svg') }}"  {{-- o .png --}}
         alt="" aria-hidden="true"
         class="absolute left-6 top-5 w-8 sm:w-10 opacity-90 pointer-events-none select-none" />
 
