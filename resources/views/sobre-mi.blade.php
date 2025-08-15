@@ -1,34 +1,203 @@
+<style>
+  :root{
+    --brand:#F0337B;
+    --text:#222;
+    --muted:#6B7280;
+    --card-radius:22px;
+  }
+
+  .hero-about{
+    position:relative;
+    overflow:hidden;
+    background:#fff;
+  }
+
+  /* ANCHO COMPLETO + rejilla */
+  .hero-inner{
+    width:100%;
+    max-width:none;                         /* full-bleed */
+    margin-inline:auto;
+    padding: clamp(20px,4vw,32px) clamp(16px,6vw,64px);
+    min-height: clamp(460px, 60vw, 760px);
+    display:grid;
+    grid-template-columns: minmax(300px, 680px) 1fr; /* texto fijo + visual flexible */
+    align-items:center;
+    gap: clamp(20px,5vw,56px);
+    position:relative;
+  }
+
+  /* Columna izquierda */
+  .hero-copy{ position:relative; z-index:2; }
+
+  .hero-title{
+    font-family: 'Sora', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+    color: var(--text);
+    font-weight: 800;
+    line-height: 1.05;
+    font-size: clamp(34px, 7vw, 86px);
+    letter-spacing:-0.02em;
+  }
+  .hero-title .brand{ color: var(--brand); }
+
+  .quote-card{
+    margin-top: clamp(16px, 3.5vw, 28px);
+    max-width: 560px;
+    background:#fff;
+    border-radius: var(--card-radius);
+    padding: clamp(16px,3vw,22px);
+    color:#111827;
+    box-shadow:
+      0 22px 40px rgba(0,0,0,0.12),
+      0 6px 16px rgba(0,0,0,0.06);
+    position:relative;
+  }
+  .quote-card::before{
+    content:'“';
+    position:absolute;
+    left: clamp(14px,2.4vw,18px);
+    top: clamp(8px,1.8vw,10px);
+    font-size: clamp(28px, 4.5vw, 36px);
+    color:#F2995D;
+    opacity:.9;
+    line-height:1;
+  }
+  .quote-card p{
+    margin:0;
+    padding-left: clamp(18px,3.2vw,26px);
+    font-size: clamp(14px,1.6vw,18px);
+    line-height:1.6;
+  }
+
+  /* Columna derecha */
+  .hero-visual{
+    position:relative;
+    min-height: clamp(300px, 44vw, 620px);
+  }
+
+  /* Panel rosa pegado a la derecha y a toda altura */
+  .pink-panel{
+    position:absolute;
+    top:0; right:0; bottom:0;
+    width: clamp(260px, 36vw, 520px);
+    background: var(--brand);
+  }
+
+  /* “ZAIRA” translúcido */
+  .panel-word{
+    position:absolute;
+    inset: 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-weight: 900;
+    font-family: 'Sora', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+    color:#fff;
+    letter-spacing: .04em;
+    font-size: clamp(80px, 12vw, 170px);
+    opacity: .35;                          /* menos opacidad */
+    pointer-events:none;
+    user-select:none;
+  }
+
+  /* Foto sobre el panel rosa */
+  .hero-person{
+    position:absolute;
+    bottom: 0;
+    right: clamp(16px, 4vw, 40px);
+    width: clamp(300px, 46vw, 640px);
+    height:auto;
+    object-fit:contain;
+    pointer-events:none;
+    user-select:none;
+    max-width:none;                         /* rompe img{max-width:100%} global */
+  }
+
+  /* >=901px: fuerza tamaños grandes de desktop */
+  @media (min-width: 901px){
+    .hero-inner{
+      grid-template-columns: minmax(360px, 760px) 1fr;
+      min-height: clamp(520px, 58vw, 780px);
+    }
+    .hero-visual{ min-height: clamp(520px, 58vw, 780px); }
+    .pink-panel{ width: clamp(320px, 38vw, 560px); }
+    .panel-word{ font-size: clamp(96px, 12.5vw, 180px); opacity:.35; }
+    .hero-person{
+      width: clamp(480px, 48vw, 760px);
+      right: clamp(24px, 3vw, 48px);
+      bottom: 0;
+      max-width:none;
+    }
+  }
+
+  /* Ajustes intermedios */
+  @media (max-width: 1100px){
+    .hero-title{ font-size: clamp(32px, 8vw, 72px); }
+    .hero-person{ width: clamp(280px, 52vw, 580px); }
+    .pink-panel{ width: clamp(220px, 42vw, 480px); }
+  }
+
+  /* Tablet/Móvil */
+  @media (max-width: 900px){
+    .hero-inner{
+      grid-template-columns: 1fr;          /* apila */
+      gap: clamp(16px,4vw,24px);
+    }
+    .hero-visual{
+      min-height: clamp(320px, 70vw, 620px);
+      margin-top: clamp(6px,2vw,12px);
+    }
+    .pink-panel{ width: clamp(210px, 56vw, 420px); }
+    .panel-word{ font-size: clamp(64px, 20vw, 130px); opacity:.40; }
+    .hero-person{
+      right: clamp(10px,6vw,36px);
+      width: clamp(260px, 72vw, 520px);
+    }
+  }
+
+  @media (max-width: 520px){
+    .quote-card{ max-width: none; }
+  }
+</style>
+
+
+
 {{-- resources/views/sobre-mi.blade.php --}}
 @extends('layouts.app')
 
 @section('title', 'Sobre mí')
 
 @section('content')
-  {{-- HERO: imagen full-bleed responsive --}}
-  <section class="relative isolate overflow-hidden">
-    {{-- Imagen (usa WebP si tienes) --}}
-    <picture class="absolute inset-0 -z-10">
-      {{-- <source type="image/webp" srcset="{{ asset('storage/images/sobre-mi/hero-sobre-mi.webp') }}"> --}}
-      <img
-        src="{{ asset('storage/images/hero images/hero-sobre-mi.png') }}" {{-- cambia la ruta/extensión --}}
-        alt="Zaira durante una sesión"
-        class="h-full w-full object-cover object-[60%_40%]" />
-        {{-- object-[x_y] ajusta el foco: mueve el recorte sin deformar --}}
-    </picture>
+  {{-- HERO “hecho a mano”, sin imagen de fondo --}}
+<section class="hero-about">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <h1 class="hero-title">
+        <span class="brand">CONÓCEME</span> UN<br>
+        POCO MÁS
+      </h1>
 
-    {{-- Contenedor y alturas mínimas --}}
-    <div class="relative mx-auto max-w-7xl px-6 lg:px-8
-                min-h-[360px] sm:min-h-[480px] lg:min-h-[620px]">
-      {{-- Si más adelante quieres texto encima, ponlo aquí --}}
-      {{-- 
-      <div class="flex h-full items-center">
-        <h1 class="font-['Sora'] text-white text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight">
-          CONÓCEME <span class="text-[#F0337B]">UN POCO MÁS</span>
-        </h1>
+      <div class="quote-card">
+        <p>
+          Había hecho terapia antes, pero con Zaira sentí que realmente me escuchaban.
+        </p>
       </div>
-      --}}
     </div>
-  </section>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="pink-panel">
+        <span class="panel-word">ZAIRA</span>
+      </div>
+
+      {{-- Foto recortada en PNG con fondo transparente (opcional) --}}
+      <img
+        src="{{ asset('storage/images/hero images/unnamed2.png') }}" {{-- ← Ajusta la ruta a tu PNG recortado --}}
+        alt=""
+        class="hero-person">
+    </div>
+  </div>
+</section>
 
 
 

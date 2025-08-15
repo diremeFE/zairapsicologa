@@ -4,6 +4,28 @@
 @section('title', 'Servicios')
 
 @section('content')
+
+{{-- HERO: imagen full-bleed responsive sin recortes --}}
+<section class="relative isolate overflow-hidden">
+  {{-- Fondo --}}
+  <div class="absolute inset-0 -z-10">
+    <img
+      src="{{ asset('storage/images/hero images/hero-minimalista.png') }}"
+      alt="Zaira durante una sesión"
+      class="h-full w-full
+             object-contain         {{-- que se vea completa en móvil/tablet --}}
+             lg:object-cover        {{-- en escritorio ya puedes cubrir --}}
+             lg:object-[50%_30%]    {{-- foco aprox. (ajústalo si quieres) --}}
+      " />
+  </div>
+
+  {{-- Altura del hero y espacio interno --}}
+  <div class="relative mx-auto max-w-7xl px-6 lg:px-8
+              min-h-[60vh] sm:min-h-[70vh] lg:min-h-[80vh]">
+    {{-- aquí iría tu texto si lo necesitas --}}
+  </div>
+</section>
+
   
 {{-- 1. ACOMPAÑAMIENTO PSICOLÓGICO --}}
 <section class="bg-white">
@@ -12,7 +34,7 @@
 
       {{-- Texto --}}
       <div class="md:col-span-7">
-        <h2 class="font-['Sora'] text-sm font-semibold tracking-wider text-gray-800 uppercase">
+        <h2 class="font-['Sora'] text-lg font-semibold tracking-wider text-gray-800 uppercase">
           1. Acompañamiento psicológico
         </h2>
 
@@ -44,7 +66,7 @@
       <div class="md:col-span-5">
         <div class="mx-auto max-w-md">
           <img
-            src="{{ asset('storage/images/servicios/acompanamiento-psicologico.png') }}"
+            src="{{ asset('storage/images/hero images/servicio-1.png') }}"
             alt="Ilustración de acompañamiento psicológico"
             loading="lazy"
             class="w-full h-auto object-contain drop-shadow-xl" />
@@ -66,7 +88,7 @@
       <div class="md:col-span-5 order-1 md:order-none">
         <div class="mx-auto max-w-md">
           <img
-            src="{{ asset('storage/images/servicios/bioneuroemocion.png') }}"
+            src="{{ asset('storage/images/hero images/servicio-2.png') }}"
             alt="Acompañamiento en Bioneuroemoción"
             loading="lazy"
             class="w-full h-auto object-contain drop-shadow-xl" />
@@ -75,7 +97,7 @@
 
       {{-- Texto --}}
       <div class="md:col-span-7">
-        <h2 class="font-['Sora'] text-sm font-semibold tracking-wider text-gray-800 uppercase">
+        <h2 class="font-['Sora'] text-lg font-semibold tracking-wider text-gray-800 uppercase">
           2. Acompañamiento en Bioneuroemoción
         </h2>
 

@@ -1,3 +1,156 @@
+
+<style>
+:root{
+  /* Alturas mínimas del bloque gris */
+  --hero-min-h-mobile: 380px;   /* ↓ menos alto en mobile */
+  --hero-min-h-desktop: 500px;  /* ↓ menos alto en desktop */
+
+  /* Padding del contenido */
+  --hero-pad-x: clamp(16px, 4vw, 32px);
+  --hero-pad-y-mobile: 16px;    /* ↓ antes 30px */
+  --hero-pad-y-desktop: 40px;   /* ↓ antes 80px */
+
+  /* Tamaños de imagen (desktop absolute) */
+  --img-w-md: 800px;
+  --img-w-lg: 900px;
+  --img-w-xl: 1000px;
+  --img-w-2xl: 1200px;
+
+  /* Posición de la imagen absoluta */
+  --img-right-md: -10%;
+  --img-bottom-md: -50px;
+  --img-right-lg: -5%;
+  --img-bottom-lg: -70px;
+
+  /* Radio curva esquina inferior izquierda */
+  --curve-mobile: 90px;
+  --curve-desktop: 200px;
+}
+
+.hero{
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  font-family: "Sora", system-ui, sans-serif;
+}
+.hero__bg{
+  position: relative;
+  background: #CBCBCB;
+  border-bottom-left-radius: var(--curve-mobile);
+  overflow: hidden;
+}
+@media (min-width: 768px){
+  .hero__bg{ border-bottom-left-radius: var(--curve-desktop); }
+}
+
+.hero__grid{
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: var(--hero-min-h-mobile);
+  padding: 28px var(--hero-pad-x) 16px;
+  max-width: 1200px;
+  margin-inline: auto;
+  gap: 8px; /* ↓ menos separación entre texto e imagen */
+}
+@media (min-width: 768px){
+  .hero__grid{
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    min-height: var(--hero-min-h-desktop);
+    padding: var(--hero-pad-y-desktop) var(--hero-pad-x);
+    column-gap: clamp(16px, 3vw, 32px);
+  }
+}
+
+.hero__content{
+  position: relative;
+  z-index: 2;
+}
+.hero__content h1{
+  font-weight: 300;
+  color: #111827;
+  font-size: clamp(26px, 4vw, 44px);
+  line-height: 1.1;
+  margin: 0 0 8px;
+}
+.hero__content p{
+  margin: 0 0 12px;
+  color: #374151;
+  font-size: clamp(15px, 2.5vw, 17px);
+  line-height: 1.4;
+}
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  background: #F0337B;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(240,51,123,.25);
+  transition: background .2s ease, transform .2s ease;
+}
+.btn:hover{ background:#d42c6e; transform: translateY(-1px); }
+.btn:focus-visible{ outline: 4px solid rgba(240,51,123,.25); }
+
+.hero__media{
+  position: relative;
+  z-index: 1;
+}
+.hero__img{
+  user-select: none;
+  pointer-events: none;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.hero__img--flow{
+  position: absolute;
+  left: 50%;
+  bottom: -4px; /* subimos imagen para reducir hueco */
+  transform: translateX(-50%);
+  width: min(95vw, 600px);
+}
+@media (min-width: 768px){
+  .hero__img--flow{ display: none; }
+}
+
+.hero__img--abs{
+  display: none;
+}
+@media (min-width: 768px){
+  .hero__media{ position: static; }
+  .hero__img--abs{
+    display: block;
+    position: absolute;
+    right: var(--img-right-md);
+    bottom: var(--img-bottom-md);
+    width: var(--img-w-md);
+  }
+}
+@media (min-width: 1024px){
+  .hero__img--abs{
+    right: var(--img-right-lg);
+    bottom: var(--img-bottom-lg);
+    width: var(--img-w-lg);
+  }
+}
+@media (min-width: 1280px){
+  .hero__img--abs{ width: var(--img-w-xl); }
+}
+@media (min-width: 1536px){
+  .hero__img--abs{ width: var(--img-w-2xl); }
+}
+
+
+</style>
+
 {{-- resources/views/welcome.blade.php --}}
 @extends('layouts.app')
 
@@ -5,37 +158,33 @@
 
 @section('content')
 
-    {{-- HERO como imagen de fondo --}}
-    <section class="relative isolate overflow-hidden">
-        {{-- Fondo --}}
-        <div class="absolute inset-0 bg-no-repeat bg-cover bg-center"
-            style="background-image: url('{{ asset('storage/images/hero images/hero-home.png') }}');">
-        </div>
+    <section class="hero">
+  <div class="hero__bg">
+    <div class="hero__grid">
+      <!-- Texto -->
+      <div class="hero__content">
+        <h1>EMPIEZA TU CAMBIO HOY</h1>
+        <p>Estoy aquí para acompañarte</p>
+        <a class="btn" href="/contacto">RESERVAR PRIMERA SESIÓN</a>
+      </div>
 
-        <div class="absolute inset-0 bg-white/0"></div>
-
-        <div
-            class="relative mx-auto max-w-7xl px-6 lg:px-8
-              min-h-[420px] sm:min-h-[520px] lg:min-h-[680px]
-              flex items-center">
-            {{-- 
-    <div class="max-w-2xl">
-      <h1 class="font-['Sora'] text-4xl sm:text-5xl lg:text-6xl text-gray-900">
-        EMPIEZA TU CAMBIO <span class="text-[#F0337B]">HOY</span>
-      </h1>
-      <p class="mt-4 text-gray-700 max-w-xl">
-        Acompañamiento cercano y profesional para lograr claridad, bienestar y resultados sostenibles.
-      </p>
-      <a href="{{ url('/contacto') }}"
-         class="mt-6 inline-flex items-center justify-center rounded-full bg-[#F0337B] px-6 py-3
-                font-['Sora'] text-white text-sm font-semibold shadow-md hover:bg-[#d42c6e]
-                focus:outline-none focus:ring-4 focus:ring-[#F0337B]/25 transition-colors">
-        Empieza tu proceso
-      </a>
+      <!-- Imagen -->
+      <div class="hero__media">
+        <!-- móvil/tablet pequeño -->
+        <img class="hero__img hero__img--flow"
+             src="{{ asset('storage/images/hero images/unnamed.png') }}"
+             alt="Imagen hero" loading="lazy" />
+        <!-- desktop absoluto -->
+        <img class="hero__img hero__img--abs"
+             src="{{ asset('storage/images/hero images/unnamed.png') }}"
+             alt="Imagen hero" loading="lazy" />
+      </div>
     </div>
-    --}}
-        </div>
-    </section>
+  </div>
+</section>
+
+
+
 
     {{-- ¿Cómo es una sesión conmigo? --}}
     <section class="relative bg-white">

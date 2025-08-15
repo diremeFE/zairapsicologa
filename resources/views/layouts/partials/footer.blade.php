@@ -16,15 +16,35 @@
 
         {{-- Social --}}
         <div class="mt-4 flex items-center gap-3">
-          <a href="#" aria-label="Instagram"
-             class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 hover:border-[#F0337B] hover:text-[#F0337B]">
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm0 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.25-2.25a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5Z"/></svg>
+          {{-- Instagram --}}
+          <a href="https://www.instagram.com/zairapsicologia?igsh=MXhwMHUyenh1aW04Zw%3D%3D&utm_source=qr" aria-label="Instagram"
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 hover:border-[#F0337B] hover:bg-[#FEE5F0] transition">
+            <img
+              src="{{ asset('storage/images/instagram.png') }}"
+              alt="Instagram"
+              class="h-4 w-4 object-contain transition-transform group-hover:scale-110" />
           </a>
-          <a href="#" aria-label="LinkedIn"
-             class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 hover:border-[#F0337B] hover:text-[#F0337B]">
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM14.5 9c3.04 0 5.5 2.46 5.5 5.5V21h-4v-6.5a1.5 1.5 0 1 0-3 0V21h-4V9h4v1.57A5 5 0 0 1 14.5 9Z"/></svg>
+
+          {{-- TikTok --}}
+          <a href="https://www.tiktok.com/@zairapsicologia?_t=ZN-8ytY9oJcD3e&_r=1" aria-label="TikTok"
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 hover:border-[#F0337B] hover:bg-[#FEE5F0] transition">
+            <img
+              src="{{ asset('storage/images/tik-tok.png') }}"
+              alt="TikTok"
+              class="h-4 w-4 object-contain transition-transform group-hover:scale-110" />
+          </a>
+
+          {{-- Threads (PNG) --}}
+          <a href="https://www.threads.com/@zairapsicologia?igshid=NTc4MTIwNjQ2YQ==" aria-label="Threads"
+            class="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 hover:border-[#F0337B] hover:bg-[#FEE5F0] transition">
+            <img
+              src="{{ asset('storage/images/threads.png') }}"
+              alt="Threads"
+              class="h-4 w-4 object-contain transition-transform group-hover:scale-110" />
           </a>
         </div>
+
+
       </div>
 
       {{-- Navegación --}}
@@ -55,15 +75,11 @@
         <ul class="mt-4 space-y-2 text-sm">
           <li class="flex items-center gap-2">
             <svg class="h-4 w-4 text-[#F0337B]" viewBox="0 0 24 24" fill="currentColor"><path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5V17a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V6.5Zm2.5-.5a.5.5 0 0 0-.5.5v.3l7.5 4.7 7.5-4.7V6.5a.5.5 0 0 0-.5-.5h-14Z"/></svg>
-            <a href="mailto:hola@zairapsicologa.com" class="hover:text-[#F0337B]">hola@zairapsicologa.com</a>
-          </li>
-          <li class="flex items-center gap-2">
-            <svg class="h-4 w-4 text-[#F0337B]" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.1 15.1 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C11.85 21 3 12.15 3 1a1 1 0 0 1 1-1h3.49a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.19 2.2Z"/></svg>
-            <a href="https://wa.me/34600000000" class="hover:text-[#F0337B]">+34 600 000 000</a>
+            <a href="mailto:hola@zairapsicologa.com" class="hover:text-[#F0337B]">zairapsicologiaa@gmail.com</a>
           </li>
           <li class="flex items-center gap-2">
             <svg class="h-4 w-4 text-[#F0337B]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 1 7 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 0 1 7-7Zm0 4a3 3 0 1 0 .001 6.001A3 3 0 0 0 12 6Z"/></svg>
-            <span>Online · España</span>
+            <span>Valencia · España</span>
           </li>
         </ul>
 

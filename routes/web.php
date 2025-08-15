@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,10 @@ Route::get('/certificados/{file}', function (string $file) {
 })->name('certificados.show');
 
 Route::view('/contacto', 'contacto')->name('contacto');
+
+Route::post('/contacto', [ContactController::class, 'send'])
+    ->name('contact.send')
+    ->middleware('throttle:5,1'); // máx 5 envíos por minuto
 
 // Páginas legales
 Route::view('/aviso-legal', 'legal.aviso-legal')->name('legal.aviso');

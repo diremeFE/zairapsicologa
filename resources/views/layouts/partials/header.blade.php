@@ -31,6 +31,8 @@
         <a href="{{ url('/') }}" class="hover:text-[#F0337B] text-[#6F6F6F]">INICIO</a>
         <a href="{{ url('/sobre-mi') }}" class="hover:text-[#F0337B] text-[#6F6F6F]">SOBRE MÍ</a>
         <a href="{{ url('/servicios') }}" class="hover:text-[#F0337B] text-[#6F6F6F]">SERVICIOS</a>
+        <a href="{{ url('/contacto') }}" class="hover:text-[#F0337B] text-[#6F6F6F]">CONTACTO</a>
+
       </nav>
 
       <!-- Derecha: CTA desktop -->
@@ -49,6 +51,8 @@
       <a href="{{ url('/') }}" class="block rounded-md px-2 py-2 text-gray-700 hover:bg-gray-100">INICIO</a>
       <a href="{{ url('/sobre-mi') }}" class="block rounded-md px-2 py-2 text-gray-700 hover:bg-gray-100">SOBRE MÍ</a>
       <a href="{{ url('/servicios') }}" class="block rounded-md px-2 py-2 text-gray-700 hover:bg-gray-100">SERVICIOS</a>
+      <a href="{{ url('/contacto') }}" class="block rounded-md px-2 py-2 text-gray-700 hover:bg-gray-100">CONTACTO</a>
+
       <a href="{{ url('/contacto') }}"
          class="mt-2 inline-flex w-full items-center justify-center rounded-full bg-[#F0337B] px-5 py-3 text-white text-sm font-semibold hover:bg-[#d42c6e] transition-colors">
         EMPIEZA TU PROCESO
